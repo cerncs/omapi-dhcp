@@ -1,5 +1,6 @@
 package org.talamonso.OMAPI;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -18,7 +19,7 @@ import com.widget.util.Hex;
  * @author  Talamonso
  * @version  1.0
  */
-public class Connection {
+public class Connection implements Closeable {
 
 	private final int headerlength = 24;
 

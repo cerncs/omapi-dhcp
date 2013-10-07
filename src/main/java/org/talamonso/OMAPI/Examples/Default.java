@@ -1,7 +1,15 @@
 package org.talamonso.OMAPI.Examples;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import org.talamonso.OMAPI.Connection;
 import org.talamonso.OMAPI.Exceptions.OmapiException;
+
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.collect.Iterables;
+import com.google.common.primitives.Bytes;
 
 /**
  * This object holds the connection informations used by the examples.
@@ -25,4 +33,20 @@ public class Default {
 		}
 		return c;
 	}
+	
+	/** Generates a <b>random</b> MAC. */
+	public static String randomMac() {
+	    byte[] bytes = new byte[6];
+	    new Random().nextBytes(bytes);
+	    String mac = Joiner.on(':').join(Iterables.transform(Bytes.asList(bytes), new Function<Byte, String>()
+        {
+            @Override
+            public String apply(Byte input)
+            {
+                return String.format("%02x", input&0xff);
+            }
+        }));
+	    return mac;
+	}
+
 }
