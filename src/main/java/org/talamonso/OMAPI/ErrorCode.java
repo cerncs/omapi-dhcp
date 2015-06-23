@@ -80,8 +80,8 @@ public enum ErrorCode
 	SIG_MISSING(66, "no TSIG signature"),
 	NOT_EQUAL(67, "not equal"),
 	CONN_RESET(68, "connection reset by peer"),
-	ATTR_UNKNOWN(69, "unknown attribute");
-	
+	ATTR_UNKNOWN(69, "unknown attribute"),
+	UNKNOWN_ERROR_CODE(-1, "Unknown error code");
 	private final int m_Number;
 	private final String m_Meaning;
 
@@ -98,7 +98,7 @@ public enum ErrorCode
 	
 	public static ErrorCode get(int code)
 	{
-		return s_InternalMap.get(code);
+		return s_InternalMap.get(code) != null ? s_InternalMap.get(code) : s_InternalMap.get(-1);
 	}
 	
 	ErrorCode(int number, String meaning)
